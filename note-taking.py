@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup as bs
 
 giris_url='https://pusula.pau.edu.tr/'
 #cerez bilgilerlini tutuyor
+#kullanici ve şifreyi değiştirinin sadece
 with requests.Session() as s:
     bilgiler={
         '__EVENTTARGET':'',
