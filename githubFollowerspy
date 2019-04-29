@@ -1,0 +1,58 @@
+# -*- coding: utf-8 -*-
+"""
+
+@author: enesk
+"""
+
+
+import requests
+from bs4 import BeautifulSoup
+
+urlTakip='https://github.com/enskocc12?tab=following'
+urlTakipci='https://github.com/enskocc12?tab=followers'
+
+def ekleme(url):
+    r=requests.get(url)
+
+    soup=BeautifulSoup(r.content,'html.parser')
+
+    gelen=soup.find_all("div",{"class":"position-relative"})
+
+    veri=gelen[5].find_all("div",{"class":"d-table table-fixed col-12 width-full py-4 border-bottom border-gray-light"})
+
+    Liste=[]
+    for i in range(0,len(veri)):
+        ss=veri[i].find_all("div",{"class":"d-table-cell col-9 v-align-top pr-3"})    
+    
+        adi=ss[0].find_all("a")
+    
+        a=adi[0].find_all("span")
+    
+        Liste.append(a[1].text)
+        
+    print() 
+    return Liste
+    
+listeTakip=ekleme(urlTakip)
+listeTakipci=ekleme(urlTakipci)
+
+takipEtmeyenler=[]
+
+for i in range(0,len(listeTakip)):
+    
+    sorgu=True
+    
+    for j in range(0,len(listeTakipci)):
+        
+        if listeTakip[i]==listeTakipci[j]:
+            
+            sorgu=False
+    if sorgu:
+        
+        takipEtmeyenler.append(listeTakip[i])
+        
+print("TAKİP ETMEYELNER \n")
+
+for a in range(0,len(takipEtmeyenler)):
+    print(takipEtmeyenler[a])
+
