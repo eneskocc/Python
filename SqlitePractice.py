@@ -12,6 +12,7 @@ class sqle:
          self.LastName=LastName
          self.city=city
          self.email=email
+        
     #Dışardan gelen firstname göre silme fonksiyonu
     def deleteCostemer(self):
          sql='Delete from customers where FirstName=?'
@@ -19,6 +20,7 @@ class sqle:
          connection.execute(sql,(self.FirstName,))
          connection.commit()
          connection.close()
+            
     #Dışardan gelen firstName göre güncelleme fonksiyonu
     def updateCustomer(self):
         sql='update customers set City=? where FirstName=?'
@@ -26,6 +28,7 @@ class sqle:
         connection.execute(sql,(self.city,self.FirstName,))
         connection.commit()
         connection.close()
+        
     #Dışardan gelen girdiler ile ekleme fonksiyonu
     def insertCustomer(self):
         connection = sqlite3.connect("chi.db")
@@ -33,6 +36,7 @@ class sqle:
         connection.execute(sql,(self.FirstName,self.LastName,self.city,self.email,))
         connection.commit()
         connection.close()
+        
     #Gelen girdiye göre arama yapıp firstname ile lastname bastıran fonksiyon
     def selectCustomer(self):
         connection = sqlite3.connect("chi.db")
@@ -49,6 +53,7 @@ class sqle:
 def menu():
     i=input("Select = (S/s)\ninsert = (I/i)\nupdate = (U/u)\ndelete = (D/d)\nFinish = (F/f)")
     return i
+
 def inputs():
     a=[]
     a.append(input("FirstName = "))
@@ -56,6 +61,7 @@ def inputs():
     a.append(input("City = "))
     a.append(input("Email = "))
     return a
+
 while True:
     a=menu()
     if a=="S" or a=="s":
