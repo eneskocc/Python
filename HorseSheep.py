@@ -9,6 +9,7 @@ class Game():
     def __init__(self,horse,sheep):
         self.horse=horse
         self.sheep=sheep
+
     def Horse(self):
         x=random.randint(1,10)
         if x<=3:
@@ -21,6 +22,7 @@ class Game():
         else:
             self.horse=self.horse+1
         return self.horse
+    
     def Sheep(self):
         y=random.randint(1,10)
         if y<=2:
@@ -35,6 +37,7 @@ class Game():
         else:
             self.sheep=self.sheep+1
         return self.sheep
+    
 def show(x):
     a=" "
     for i in range(x):
